@@ -1,0 +1,115 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f8ff; /* Color de fondo como respaldo */
+    background-image: url('fondo 1.png'); /* Ajusta la ruta según sea necesario */
+    background-size: cover; /* Asegúrate de que cubra toda la página */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+    color: #333;
+    text-align: center;
+}
+
+header {
+    background-color: #36454f; /* Gris azulado oscuro */
+    padding: 20px;
+}
+
+h1, h2 {
+    font-family: 'Merriweather', serif;
+}
+
+.formulario-meditacion {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 400px;
+    background-color: #3e4444; /* Gris oscuro */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#formulario-grabovoi input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #2f4f4f; /* Coincide con el color de fondo del body */
+    color: #f5f5f5; /* Texto claro */
+}
+
+#formulario-grabovoi button {
+    width: 85%;
+    padding: 10px;
+    background-color: #556b2f; /* Verde oscuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#formulario-grabovoi button:hover {
+    background-color: #6b8e23; /* Un verde ligeramente más claro */
+}
+
+footer {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #36454f; /* Coincide con el color del header */
+    color: #c0c0c0;
+}
+
+.esfera-plateada {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #8c8c8c; /* Un tono gris plateado */
+    background-image: radial-gradient(circle at 100px 100px, #ffffff, #8c8c8c);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#numero-en-esfera {
+    font-size: 110px;
+    color: black;
+    animation: fadeIn 2s ease-in-out; /* Duración de la animación */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Media queries para diferentes tamaños de pantalla */
+
+/* Para tablets */
+@media (max-width: 768px) {
+    .formulario-meditacion,
+    .esfera-plateada {
+        max-width: 90%;
+        margin: 20px auto;
+    }
+
+    #numero-en-esfera {
+        font-size: 80px; /* Tamaño de fuente más pequeño para tablets */
+    }
+}
+
+/* Para teléfonos móviles */
+@media (max-width: 480px) {
+    .formulario-meditacion,
+    .esfera-plateada {
+        max-width: 100%;
+        margin: 15px auto;
+    }
+
+    #numero-en-esfera {
+        font-size: 60px; /* Tamaño de fuente más pequeño para móviles */
+    }
+
+    header, footer {
+        padding: 15px; /* Menos padding en la cabecera y el pie de página */
+    }
+}
