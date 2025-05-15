@@ -108,6 +108,21 @@ const char* htmlPage = R"rawliteral(
           <option value="741852963">741852963 - Salud Perfecta</option>
           <option value="369258147">369258147 - Paz Interior</option>
           <option value="112233445">112233445 - Protección</option>
+          <option value="5197148">5197148 - Dinero Inesperado</option>
+          <option value="9187948181">9187948181 - Restauración Completa de Órganos</option>
+          <option value="212585212">212585212 - Armonía en Relaciones</option>
+          <option value="14111963">14111963 - Sanación de la Tierra</option>
+          <option value="14854232190">14854232190 - Éxito Profesional</option>
+          <option value="5555555">5555555 - Limpieza Espiritual</option>
+          <option value="894719546">894719546 - Protección Energética</option>
+          <option value="132435465">132435465 - Creatividad</option>
+          <option value="8888858888">8888858888 - Manifestación Rápida</option>
+          <option value="317498317">317498317 - Energía Positiva</option>
+          <option value="417894218">417894218 - Claridad Mental</option>
+          <option value="917814218">917814218 - Motivación Constante</option>
+          <option value="314159265">314159265 - Sabiduría Divina</option>
+          <option value="284516589">284516589 - Conexión Espiritual</option>
+          <option value="781203456">781203456 - Vitalidad Juvenil</option>
         </select>
         <button id="btnComenzar">Comenzar</button>
       </div>
@@ -186,6 +201,7 @@ const char* htmlPage = R"rawliteral(
 </body>
 </html>
 )rawliteral";
+
 
 // Handle root URL "/"
 void handleRoot() {
