@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+/* Add your styles here (same as before) */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f8ff;
+    background-image: url('background1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+    text-align: center;
+}
+
+header {
+    background-color: #36454f;
+    padding: 20px;
+}
+
+h1, h2 {
+    font-family: 'Merriweather', serif;
+}
+
+.meditation-form {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 400px;
+    background-color: #3e4444;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#grabovoi-form select, #grabovoi-form input {
+    width: 85%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #2f4f4f;
+    color: #f5f5f5;
+}
+
+#grabovoi-form button {
+    width: 85%;
+    padding: 10px;
+    background-color: #556b2f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#grabovoi-form button:hover {
+    background-color: #6b8e23;
+}
+
+footer {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #36454f;
+    color: #c0c0c0;
+}
+
+.silver-sphere {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #8c8c8c;
+    background-image: radial-gradient(circle at 100px 100px, #ffffff, #8c8c8c);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#number-in-sphere {
+    font-size: 190px;
+    color: black;
+    animation: fadeIn 2s ease-in-out;
+}
+
+#remaining-repetitions, #sequence-name, #full-sequence {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #4f4f4f;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meditation with Grabovoi Numbers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <main>
+        <section class="meditation-form">
+            <h2>Select Your Numerical Sequence</h2>
+            <form id="grabovoi-form">
+                <select id="numerical-sequence" required>
+                    <option value="" disabled selected>Select a sequence...</option>
+                    <option value="5207418">5207418 - Unexpected Money</option>
+                    <option value="123456789">123456789 - Universal Love</option>
+                    <option value="987654321">987654321 - Prosperity</option>
+                    <option value="741852963">741852963 - Perfect Health</option>
+                    <option value="369258147">369258147 - Inner Peace</option>
+                    <option value="112233445">112233445 - Protection</option>
+                </select>
+                <input type="number" id="number-of-repetitions" placeholder="Number of repetitions" min="1" required>
+                <button type="submit">Start</button>
+            </form>
+        </section>
+
+        <section id="meditation-screen" style="display:none;">
+            <div id="sequence-name">Sequence: </div>
+            <div id="full-sequence">Numbers: </div>
+            <div id="sphere" class="silver-sphere">
+                <span id="number-in-sphere"></span>
+            </div>
+            <div id="remaining-repetitions">Remaining repetitions: </div>
+        </section>
+    </main>
+    
+    <script>
+    document.getElementById('grabovoi-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Get the selected sequence and repetitions
+        const selectElement = document.getElementById('numerical-sequence');
+        const sequence = selectElement.value; // Numeric sequence
+        const sequenceName = selectElement.options[selectElement.selectedIndex].text.split('-')[1].trim(); // Sequence name
+        const repetitions = parseInt(document.getElementById('number-of-repetitions').value, 10); // Number of repetitions
+
+        // Update the meditation screen
+        document.querySelector('.meditation-form').style.display = 'none';
+        document.getElementById('meditation-screen').style.display = 'block';
+        document.getElementById('sequence-name').textContent = `Sequence: ${sequenceName}`;
+        document.getElementById('full-sequence').textContent = `Numbers: ${sequence}`;
+        repeatSequence(sequence, repetitions);
+    });
+
+    function repeatSequence(sequence, repetitions) {
+        const numbers = sequence.split('');
+        let index = 0;
+        let remainingRepetitions = repetitions;
+
+        const remainingRepetitionsDisplay = document.getElementById('remaining-repetitions');
+        remainingRepetitionsDisplay.textContent = `Remaining repetitions: ${remainingRepetitions}`;
+
+        const interval = setInterval(() => {
+            if (remainingRepetitions <= 0) {
+                clearInterval(interval);
+                // Logic to finish: return to the main form
+                document.getElementById('meditation-screen').style.display = 'none';
+                document.querySelector('.meditation-form').style.display = 'block';
+            } else {
+                displayNumber(numbers[index]);
+                index = (index + 1) % numbers.length;
+                if (index === 0) {
+                    remainingRepetitions--;
+                    remainingRepetitionsDisplay.textContent = `Remaining repetitions: ${remainingRepetitions}`;
+                }
+            }
+        }, 1500); // Each "tick" is 1.5 seconds
+    }
+
+    function displayNumber(num) {
+        const numberElement = document.getElementById('number-in-sphere');
+        numberElement.classList.remove('animated');
+        
+        // Force reflow of the DOM. This is the key part.
+        void numberElement.offsetWidth;
+
+        numberElement.classList.add('animated');
+        numberElement.textContent = num;
+    }
+    </script>
+</body>
+</html>
